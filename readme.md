@@ -1,32 +1,42 @@
-# Terraform 3-Tier AWS Architecture
+Terraform 3-Tier AWS Architecture
+This repository contains Terraform configurations to provision a highly available, scalable, and modular 3-tier architecture on AWS. Designed with infrastructure-as-code best practices, it leverages reusable Terraform modules to automate and standardize cloud infrastructure deployments.
 
-This repository contains Terraform code to provision a **highly available, scalable, and modular 3-tier architecture** on AWS. It includes a **VPC**, **public and private subnets**, **Internet and NAT gateways**, **Application Load Balancers**, **Auto Scaling Groups with Launch Templates**, **EC2 instances**, and an **RDS database**—all structured using reusable Terraform modules.
+🏗️ Architecture Overview
+The infrastructure is deployed within a single AWS region across two Availability Zones (AZs) to ensure high availability. It is logically divided into the following tiers:
 
-## Architecture Overview
+1. Web Tier (Public Subnets)
+EC2 instances hosted behind a public Application Load Balancer (ALB)
 
-The infrastructure is deployed in a single AWS region with two Availability Zones (AZs) and consists of the following tiers:
+Internet Gateway for external connectivity
 
-- **Web Tier (Public Subnets)**: 
-  - EC2 instances behind a public ALB
-  - Internet Gateway and public routing
+Public route tables for direct internet access
 
-- **Application Tier (Private Subnets)**:
-  - EC2 instances in private subnets
-  - Private ALB for internal traffic
+2. Application Tier (Private Subnets)
+EC2 instances deployed in private subnets
 
-- **Database Tier (Private Subnets)**:
-  - Amazon RDS instance in a private subnet
-  - No direct internet access
+Traffic routed through a private ALB
 
-## Features
+Supports internal communication with enhanced security
 
-- ✅ Highly Available (multi-AZ)
-- ✅ Modular Terraform structure
-- ✅ NAT Gateway for outbound internet access from private subnets
-- ✅ Application Load Balancer (public & private)
-- ✅ Launch Templates with Auto Scaling Groups
-- ✅ Secure and scalable architecture
-- ✅ Parameterized with `terraform.tfvars`
+3. Database Tier (Private Subnets)
+Amazon RDS deployed in private subnets
+
+No direct internet access to ensure secure database operations
+
+✨ Key Features
+✅ Highly Available (Multi-AZ architecture)
+
+✅ Modular and reusable Terraform code
+
+✅ NAT Gateway for controlled outbound access from private subnets
+
+✅ Application Load Balancers for public and internal traffic routing
+
+✅ Launch Templates with Auto Scaling Groups for scalability
+
+✅ Secure and production-ready infrastructure
+
+✅ Environment customization via terraform.tfvars
 
 ---
 
